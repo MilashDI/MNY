@@ -85,3 +85,6 @@ header:after{content:none}
 .garland-socket{fill:#a88f76}
 .garland-bulb{fill:#ffd989;stroke:#d4a35a;stroke-width:.6;filter:drop-shadow(0 0 4px #f6b74688)}
 .garland-halo{fill:#ffce6b;opacity:.13}
+
+/* Match club identity to the MNY wordmark. */
+.header-club{color:var(--text)}
