@@ -21,3 +21,11 @@
 .hero .winter-emblem svg{width:100%;height:auto;overflow:visible}
 /* Align the ornament body with the center of the two launch buttons. */
 .hero .winter-emblem{transform:translateY(-38px)}
+
+/* Club identity: traced original mark, colored by the site's palette. */
+.brand{display:flex;align-items:center;gap:17px;flex-shrink:0}
+.brand .club-mark{display:block;width:43px;height:72px;margin:0;color:var(--gold);letter-spacing:0}
+.club-mark svg{display:block;width:100%;height:100%}
+.brand .brand-event{display:block;font:28px Georgia,serif;letter-spacing:3px;margin:0;padding-left:17px;border-left:1px solid var(--line)}
+.brand-event small{display:block;font:8px -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:1.6px;margin-top:5px}
+@media(max-width:650px){.brand{gap:10px}.brand .club-mark{width:32px;height:54px}.brand .brand-event{font-size:22px;padding-left:10px}.brand-event small{font-size:6px;letter-spacing:1px}header{gap:12px}nav{min-width:0}}
