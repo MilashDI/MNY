@@ -163,3 +163,6 @@ header:after{content:none}
 
 /* Separate elimination scale, visually independent of the foul counter. */
 .removal-control{display:flex;align-items:center;gap:7px;margin-left:6px;padding-left:11px;border-left:1px solid #e0d2d6}.removal-scale{display:flex;align-items:center;gap:0;width:51px;height:28px;padding:3px 5px;background:#faf7f5;border:1px solid #dfd1d5;border-radius:7px;color:#a28c94}.removal-line{height:4px;flex:1;border-radius:3px 0 0 3px;background:#ded3d6}.removal-bang{display:grid;place-items:center;flex-shrink:0;width:20px;height:20px;border:1px solid #cab7be;border-radius:50%;font-size:14px;font-weight:750;background:#fff;line-height:1}.removal-scale:hover{background:#fae9ed;border-color:#c88b9c;color:#a33451}.removal-scale.is-removed{background:#f8dce3;border-color:#bc4a67;color:#fff}.is-removed .removal-line{background:#b33856}.is-removed .removal-bang{background:#b33856;border-color:#b33856}.removal-caption{font-size:10px;color:#a33451}
+
+/* The flag marks the player opening the current speaking round. */
+.player-position{position:relative;display:inline-flex;flex-shrink:0}.day-opener{position:absolute;left:-10px;top:-8px;width:21px;height:21px;display:grid;place-items:center;border:1px solid #c6aa50;border-radius:50%;background:#fff1bc;color:#9b7214;box-shadow:0 2px 5px #8a601c18}.day-opener svg{width:14px;height:14px}
