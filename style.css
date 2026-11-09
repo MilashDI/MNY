@@ -128,3 +128,5 @@ header:after{content:none}
 /* Open beside the trigger so hovering cannot accidentally choose a role. */
 .compact-role-options{left:calc(100% + 7px)}
 .compact-role-options:before{content:"";position:absolute;right:100%;top:0;bottom:0;width:9px}
+
+.role-clear{width:36px;height:36px;padding:4px;font-size:23px;line-height:1;color:#a52b46;border-color:#e2c3cc}.role-clear:hover{background:#f8e8ed}
