@@ -113,3 +113,18 @@ header:after{content:none}
 .night-role-counts{display:grid;grid-template-columns:1fr 1fr;gap:9px}.night-role-counts .role-total{justify-content:center;padding:10px}.night-role-counts svg{width:22px;height:22px}
 .seats{display:flex;flex-direction:column;gap:8px}.seats .seat{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:12px 15px;background:#fffdfb}.seats .seat-top{flex:1;min-width:180px}.seats .seat-tools{margin:0}.seats .name{display:flex;align-items:center;gap:12px}.seats .game-role{margin:0;flex-shrink:0}.seats .seat.current{background:#f5e6eb}
 @media(max-width:650px){.host-table{padding:8px 14px}.host-player-row{gap:10px;flex-wrap:wrap}.host-player-row .role-picker{margin-left:47px}.host-player-name{flex-basis:100%}.host-table-heading>span:last-child{display:none}.host-player-row .role-choice{padding:7px 11px}.seats .seat-tools{width:100%;padding-left:46px}.host-player-name .guest-label{margin-left:0}}
+/* Roles live beside the nickname; choices appear only while interacting. */
+.host-player-name{flex:0 1 auto;flex-basis:auto!important;overflow:visible;gap:12px}
+.host-player-row{justify-content:flex-start;overflow:visible}
+.compact-role{position:relative;display:flex;align-items:center;flex-shrink:0}
+.role-trigger{width:34px;height:34px;border-radius:8px;border:1px dashed #cbb2bc;padding:6px;display:grid;place-items:center;color:#9b7c88;background:#fff}
+.role-trigger>span{font-size:19px;line-height:1}
+.role-trigger.assigned{border:1px solid #dec7d0;background:#f4e6ec;color:#952747}
+.role-trigger svg{width:21px;height:21px;display:block}
+.compact-role-options{display:none;position:absolute;left:0;top:-9px;gap:5px;align-items:center;padding:8px;background:#fffdfb;border:1px solid #dec7d0;border-radius:12px;box-shadow:0 6px 22px #492a371c;z-index:5;white-space:nowrap}
+.compact-role:hover:not(.just-selected) .compact-role-options,.compact-role:focus-within:not(.just-selected) .compact-role-options,.compact-role.open .compact-role-options{display:flex}
+.compact-role-options .role-choice{padding:7px}
+.host-table{overflow:visible}.compact-role.just-selected .compact-role-options{display:none}
+/* Open beside the trigger so hovering cannot accidentally choose a role. */
+.compact-role-options{left:calc(100% + 7px)}
+.compact-role-options:before{content:"";position:absolute;right:100%;top:0;bottom:0;width:9px}
