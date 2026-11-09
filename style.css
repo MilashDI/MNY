@@ -52,3 +52,16 @@ input,select{background:#2c1522;color:var(--text)}
 :focus-visible{outline:2px solid var(--accent)}
 header{position:relative}
 header:after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:16px;pointer-events:none;background:radial-gradient(ellipse 3px 5px at 30px 7px,#ffe0a6 85%,transparent 100%) 0 0 / 100px 16px repeat-x;filter:drop-shadow(0 0 5px #ffb95f99);opacity:.85}
+
+/* Cherry + Champagne palette preview. */
+:root{--bg:#28131f;--panel:#3a202e;--line:#654854;--muted:#d0b9bc;--text:#fff3e5;--accent:#ead3ae;--silver:#f5e3c8}
+body{background:radial-gradient(ellipse at 83% 22%,#a45c5324,transparent 44%),radial-gradient(ellipse at 8% 85%,#682b4726,transparent 55%),var(--bg)}
+button.primary{color:#422431;background:#f1dfc3;border-color:#f1dfc3}
+button.primary:hover{background:#fff0d8;border-color:#fff0d8;box-shadow:0 0 30px #ead3ae20}
+.launch-secondary{background:#ead3ae08;border-color:#c4a88770}
+.launch-secondary:hover{background:#ead3ae17}
+.home-stats .summary-card{background:linear-gradient(145deg,#63403660,#3a202ecc)}
+.summary-number,.summary-link>span:last-child,.eyebrow{color:var(--accent)}
+.header-club{color:var(--silver)}
+.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #ead3ae20)}
+.winter-emblem:before{background:radial-gradient(circle,#ead3ae15,transparent 70%)}
