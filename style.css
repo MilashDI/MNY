@@ -102,3 +102,14 @@ header:after{content:none}
 .profile-photo-editor .player-avatar img{object-fit:contain}
 .player-avatar{position:relative}
 .player-avatar img{position:absolute;inset:0;min-width:0;min-height:0}
+/* Host roster: one numbered player per row, before and during the game. */
+.host-table{padding:10px 22px;background:#fffdfb}
+.host-table-heading{display:flex;justify-content:space-between;padding:14px 0;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1.4px}
+.host-table-heading>span:last-child{width:183px;text-align:center}
+.host-roster{display:flex;flex-direction:column}
+.host-player-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:67px;padding:10px 0;border-top:1px solid var(--line)}
+.host-player-name{display:flex;align-items:center;gap:13px;min-width:0;flex:1}.host-player-name strong{font-size:15px;font-weight:500;overflow-wrap:anywhere}
+.host-player-row .role-picker{padding:0;margin:0;gap:7px;flex-shrink:0}.host-player-row .role-choice{padding:7px}.host-player-row .role-choice svg{width:21px;height:21px}
+.night-role-counts{display:grid;grid-template-columns:1fr 1fr;gap:9px}.night-role-counts .role-total{justify-content:center;padding:10px}.night-role-counts svg{width:22px;height:22px}
+.seats{display:flex;flex-direction:column;gap:8px}.seats .seat{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:12px 15px;background:#fffdfb}.seats .seat-top{flex:1;min-width:180px}.seats .seat-tools{margin:0}.seats .name{display:flex;align-items:center;gap:12px}.seats .game-role{margin:0;flex-shrink:0}.seats .seat.current{background:#f5e6eb}
+@media(max-width:650px){.host-table{padding:8px 14px}.host-player-row{gap:10px;flex-wrap:wrap}.host-player-row .role-picker{margin-left:47px}.host-player-name{flex-basis:100%}.host-table-heading>span:last-child{display:none}.host-player-row .role-choice{padding:7px 11px}.seats .seat-tools{width:100%;padding-left:46px}.host-player-name .guest-label{margin-left:0}}
