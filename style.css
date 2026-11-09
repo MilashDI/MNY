@@ -80,7 +80,7 @@ body{background:radial-gradient(ellipse at 84% 18%,#f7e9e64d,transparent 46%),ra
 .launch-secondary:hover{background:#f7eeed}
 input,select{background:#fffefd}
 header:after{content:none}
-.holiday-garland{position:absolute;left:0;right:0;top:calc(100% - 3px);height:38px;pointer-events:none;overflow:visible;z-index:1}
+.holiday-garland{position:absolute;display:block;width:100%;left:0;right:0;top:calc(100% - 3px);height:38px;pointer-events:none;overflow:visible;z-index:1}
 .garland-wire{fill:none;stroke:#b8a491;stroke-width:.85;opacity:.8}
 .garland-socket{fill:#a88f76}
 .garland-bulb{fill:#ffd989;stroke:#d4a35a;stroke-width:.6;filter:drop-shadow(0 0 4px #f6b74688)}
