@@ -166,3 +166,6 @@ header:after{content:none}
 
 /* The flag marks the player opening the current speaking round. */
 .player-position{position:relative;display:inline-flex;flex-shrink:0}.day-opener{position:absolute;left:-10px;top:-8px;width:21px;height:21px;display:grid;place-items:center;border:1px solid #c6aa50;border-radius:50%;background:#fff1bc;color:#9b7214;box-shadow:0 2px 5px #8a601c18}.day-opener svg{width:14px;height:14px}
+
+/* Player elimination lives in a dedicated numbered bar below the roster. */
+.removal-bar{display:flex;align-items:center;gap:17px;padding:20px 0 12px;border-top:1px solid #ddc6ce;margin-top:4px}.removal-bar-icon{width:30px;height:30px;display:grid;place-items:center;flex-shrink:0;border:1px solid #d7acb8;border-radius:50%;color:#a53957;background:#faeaf0;font-size:20px;font-weight:700}.removal-numbers{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;flex:1}.removal-number{padding:0;height:33px;display:grid;place-items:center;border:1px solid #dfcbd2;border-radius:8px;background:#fff;color:#976274;font-size:13px}.removal-number:hover{background:#f9e5ec;border-color:#b96a83}.removal-number.removed{background:#a53654;color:#fff;border-color:#a53654}@media(max-width:650px){.removal-bar{gap:12px;align-items:flex-start}.removal-numbers{grid-template-columns:repeat(5,minmax(0,1fr))}}
