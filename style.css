@@ -186,3 +186,7 @@ header:after{content:none}
 .nomination-title{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.2;color:var(--text);letter-spacing:-.4px}
 .nomination-divider{height:36px}
 @media(max-width:650px){.nomination-title{font-size:27px}.nomination-divider{height:32px}}
+/* Pointer-based sorting: the actual order moves live, without a native snap-back ghost. */
+.nomination-item .nomination-chip{cursor:grab;touch-action:none;-webkit-user-drag:none;user-select:none}.nomination-item.dragging{opacity:1}.nomination-item.dragging .nomination-chip{color:transparent;background:#f6ecef;border:2px dashed #b27b8e;box-shadow:none}.candidate-drag-ghost{position:fixed!important;z-index:1000!important;pointer-events:none!important;cursor:grabbing!important;background:#952747!important;color:#fff!important;border-color:#952747!important;box-shadow:0 9px 20px #492a3740!important;transform:scale(1.08);margin:0!important;transition:none!important}.nomination-item.recently-moved .nomination-chip{animation:candidate-settle 1.25s ease-out}@keyframes candidate-settle{0%,45%{background:#952747;color:#fff;box-shadow:0 0 0 4px #95274720}100%{background:#f4e3e9;color:#952747;box-shadow:0 0 0 0 #95274700}}@media(prefers-reduced-motion:reduce){.nomination-item.recently-moved .nomination-chip{animation:none;outline:2px solid #952747}}
+
+.nomination-order{position:relative}
