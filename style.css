@@ -29,14 +29,22 @@
 @media(max-width:1000px){.header-right{gap:0}}
 @media(max-width:650px){header{gap:12px;align-items:center;flex-wrap:wrap}.brand{order:0}.header-right{order:1}.header-club{width:32px;height:54px}nav{order:2;width:100%;justify-content:space-between}nav button{padding:8px 0}}
 
-/* Frost Night: silver identity, ice-blue accents and a quiet moonlit backdrop. */
-:root{color-scheme:dark;--silver:#e4eefb}
-body{background:radial-gradient(ellipse at 82% 16%,#4269a02b,transparent 48%),radial-gradient(ellipse at 10% 95%,#1c355c55,transparent 55%),var(--bg)}
-.header-club{color:var(--silver)}
-button.primary:hover{background:#d2eaff;border-color:#d2eaff;box-shadow:0 0 24px #b9dcfa16}
-.launch-secondary{background:#9ecbfa12;border-color:#9ecbfa55}
-.launch-secondary:hover{background:#9ecbfa20}
-.home-stats .summary-card{background:linear-gradient(145deg,#243c6070,#192943bf)}
-.snow{opacity:.3}
-.winter-emblem{color:var(--silver)}
+/* Cranberry and Snow: warm snow, wine-red actions, pale rose surfaces. */
+:root{color-scheme:light;--bg:#fff5ec;--panel:#fffaf6;--line:#dfcbd0;--muted:#826773;--text:#442536;--accent:#681f36;--ice:#e8b5be;--silver:#8b2943}
+body{background:radial-gradient(ellipse at 82% 16%,#e8b5be4d,transparent 48%),radial-gradient(ellipse at 10% 95%,#f5dce04d,transparent 55%),var(--bg)}
+button.primary{color:#fff8f2;background:#681f36;border-color:#681f36}
+button.primary:hover{background:#812b45;border-color:#812b45;box-shadow:0 0 24px #681f3610}
+button:hover{background:#681f3608}
+.launch-secondary{background:#fffaf699;border-color:#c99da9;color:var(--text)}
+.launch-secondary:hover{background:#f5e1e5}
+.panel,.seat,dialog{background:var(--panel)}
+.home-stats .summary-card{background:linear-gradient(145deg,#fffdfb,#f7e8e9)}
+.seat.current{background:#f0dbe1}
+input,select{background:#fffaf7;color:var(--text)}
+.header-club{color:var(--accent)}
+.role.black,button.danger{color:#a52e43}
+.badge{background:#681f3610}
+.snow{opacity:.6;background-image:radial-gradient(2px 2px at 15% 20%,#b77b8c 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#b77b8c 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
+.winter-emblem{color:#8b2943;filter:drop-shadow(0 10px 35px #681f3620)}
+.winter-emblem:before{background:radial-gradient(circle,#e8b5be44,transparent 70%)}
 :focus-visible{outline:2px solid var(--accent)}
