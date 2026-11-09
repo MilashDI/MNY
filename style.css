@@ -29,22 +29,22 @@
 @media(max-width:1000px){.header-right{gap:0}}
 @media(max-width:650px){header{gap:12px;align-items:center;flex-wrap:wrap}.brand{order:0}.header-right{order:1}.header-club{width:32px;height:54px}nav{order:2;width:100%;justify-content:space-between}nav button{padding:8px 0}}
 
-/* Cranberry and Snow: warm snow, wine-red actions, pale rose surfaces. */
-:root{color-scheme:light;--bg:#fff5ec;--panel:#fffaf6;--line:#dfcbd0;--muted:#826773;--text:#442536;--accent:#681f36;--ice:#e8b5be;--silver:#8b2943}
-body{background:radial-gradient(ellipse at 82% 16%,#e8b5be4d,transparent 48%),radial-gradient(ellipse at 10% 95%,#f5dce04d,transparent 55%),var(--bg)}
-button.primary{color:#fff8f2;background:#681f36;border-color:#681f36}
-button.primary:hover{background:#812b45;border-color:#812b45;box-shadow:0 0 24px #681f3610}
-button:hover{background:#681f3608}
-.launch-secondary{background:#fffaf699;border-color:#c99da9;color:var(--text)}
-.launch-secondary:hover{background:#f5e1e5}
+/* New Year Midnight: violet light, silver and a deep night sky. */
+:root{color-scheme:dark;--bg:#111322;--panel:#1b1d33;--line:#393c5b;--muted:#b0b1cb;--text:#f4f3ff;--accent:#b5a8ff;--ice:#d4cdfa;--silver:#e4e7f2}
+body{background:radial-gradient(ellipse at 83% 22%,#7861c62b,transparent 44%),radial-gradient(ellipse at 8% 85%,#3e407833,transparent 55%),var(--bg)}
+button.primary{color:#171329;background:#b5a8ff;border-color:#b5a8ff}
+button.primary:hover{background:#c9bfff;border-color:#c9bfff;box-shadow:0 0 30px #a695ff25}
+button:hover{background:#b5a8ff0c}
+.launch-secondary{background:#b5a8ff0c;border-color:#8e85bf70;color:var(--text)}
+.launch-secondary:hover{background:#b5a8ff1c}
 .panel,.seat,dialog{background:var(--panel)}
-.home-stats .summary-card{background:linear-gradient(145deg,#fffdfb,#f7e8e9)}
-.seat.current{background:#f0dbe1}
-input,select{background:#fffaf7;color:var(--text)}
-.header-club{color:var(--accent)}
-.role.black,button.danger{color:#a52e43}
-.badge{background:#681f3610}
-.snow{opacity:.6;background-image:radial-gradient(2px 2px at 15% 20%,#b77b8c 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#b77b8c 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
-.winter-emblem{color:#8b2943;filter:drop-shadow(0 10px 35px #681f3620)}
-.winter-emblem:before{background:radial-gradient(circle,#e8b5be44,transparent 70%)}
+.home-stats .summary-card{background:linear-gradient(145deg,#28274299,#1b1d33cc)}
+.seat.current{background:#332f50}
+input,select{background:#15172b;color:var(--text)}
+.header-club{color:var(--silver)}
+.role.black,button.danger{color:#f0a5bd}
+.badge{background:#b5a8ff19}
+.snow{opacity:.4;background-image:radial-gradient(2px 2px at 15% 20%,#eeeaff 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#c3b7ff 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
+.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #9d84f02c)}
+.winter-emblem:before{background:radial-gradient(circle,#b5a8ff18,transparent 70%)}
 :focus-visible{outline:2px solid var(--accent)}
