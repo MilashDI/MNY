@@ -144,3 +144,16 @@ header:after{content:none}
 .role-icon-mafia,.role-icon-don{color:#111111}
 .role-icon-sheriff{color:#d5a000}
 .role-choice.selected:has(.role-icon-mafia),.role-choice.selected:has(.role-icon-don),.role-choice.selected:has(.role-icon-sheriff){background:#f4e6ec;border-color:#c9a9b6}
+/* Role backgrounds follow the icon color instead of the shared cherry tint. */
+.role-trigger.assigned:has(.role-icon-mafia),
+.role-trigger.assigned:has(.role-icon-don),
+.role-choice:has(.role-icon-mafia),
+.role-choice:has(.role-icon-don){background:#e2e2e2;border-color:#b9b9b9;color:#111}
+.role-choice.selected:has(.role-icon-mafia),
+.role-choice.selected:has(.role-icon-don){background:#d1d1d1;border-color:#888;box-shadow:0 2px 7px #00000016}
+.role-trigger.assigned:has(.role-icon-sheriff),
+.role-choice:has(.role-icon-sheriff){background:#fff1b8;border-color:#e4ca6c}
+.role-choice.selected:has(.role-icon-sheriff){background:#ffe89a;border-color:#cead3d;box-shadow:0 2px 7px #b48b181c}
+.role-icon-sheriff{color:#b48700}
+.role-choice:has(.role-icon-mafia):hover,.role-choice:has(.role-icon-don):hover{background:#d4d4d4;border-color:#888}
+.role-choice:has(.role-icon-sheriff):hover{background:#ffe89a;border-color:#cead3d}
