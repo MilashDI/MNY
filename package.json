@@ -1,1 +1,1 @@
-{"name":"mafia-new-year","version":"0.1.0","private":true,"scripts":{"start":"python3 -m http.server 3000 --bind 127.0.0.1","test":"node --test tests/*.test.cjs"}}
+{"name":"mafia-new-year","version":"0.1.0","private":true,"scripts":{"start":"python3 server.py","test":"node --test tests/*.test.cjs"}}

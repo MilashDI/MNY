@@ -1,7 +1,21 @@
 const E=MNY,KEY='mny.v1';
 let db;try{db=JSON.parse(localStorage.getItem(KEY))}catch{}db=db||{players:[],games:[],active:null};let view='home',undo=[],storageOK=true;
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),g=()=>db.active,name=id=>db.players.find(p=>p.id===id)?.name||g()?.guests?.[id]||db.games.map(x=>x.guests?.[id]).find(Boolean)||'Игрок',who=i=>`№${i+1} · ${esc(name(g().seats[i].id))}`,alive=()=>g().seats.map((p,i)=>p.alive?i:null).filter(i=>i!==null);
-function save(){try{localStorage.setItem(KEY,JSON.stringify(db));storageOK=true}catch{storageOK=false;toast('Не удалось сохранить. Экспортируйте данные.')}document.querySelector('.local').textContent=storageOK?'● Сохранено на этом устройстве':'! Сохранение недоступно';}
+let databaseMode=false,databaseRevision=0,saveQueue=Promise.resolve(),databaseConflict=false;
+function save(){
+ const snapshot=JSON.stringify(db);
+ if(databaseMode){
+  storageOK=true;document.querySelector('.local').textContent='● Сохранение в базу…';
+  saveQueue=saveQueue.then(async()=>{if(databaseConflict)throw Error('Данные изменились в другом окне. Экспортируйте текущую копию и обновите страницу.');const response=await fetch('/api/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({revision:databaseRevision,state:JSON.parse(snapshot)})});if(response.status===409){databaseConflict=true;throw Error('Данные изменились в другом окне. Экспортируйте копию и обновите страницу.')}if(!response.ok)throw Error('Не удалось сохранить в базу. Проверьте, что MNY запущен, и повторите сохранение.');databaseRevision=(await response.json()).revision;storageOK=true;document.querySelector('.local').textContent='● Сохранено в локальную базу';}).catch(error=>{storageOK=false;document.querySelector('.local').textContent='! Изменения не сохранены';toast(error.message)});
+ }else{try{localStorage.setItem(KEY,snapshot);storageOK=true}catch{storageOK=false;toast('Не удалось сохранить. Экспортируйте данные.')}document.querySelector('.local').textContent=storageOK?'● Сохранено в браузере':'! Сохранение недоступно'}
+}
+async function loadDatabase(){
+ $('#app').innerHTML='<div class="empty"><h2>Открываем базу клуба…</h2></div>';
+ try{const response=await fetch('/api/state',{cache:'no-store'});if(!response.ok)throw Error();const stored=await response.json();databaseRevision=stored.revision;databaseMode=true;const legacy=db;let migrated=false;try{migrated=localStorage.getItem('mny.sqlite.migrated')==='yes'}catch{}
+ if(stored.state){db=stored.state;if(!migrated){let added=false;for(const player of legacy.players){if(!db.players.some(p=>p.id===player.id||p.name.toLocaleLowerCase()===player.name.toLocaleLowerCase())){db.players.push(player);added=true}}for(const game of legacy.games){if(!db.games.some(x=>x.id===game.id)){db.games.push(game);added=true}}if(added){save();await saveQueue;if(!storageOK)throw Error()}}}else{save();await saveQueue;if(!storageOK)throw Error()}
+ try{localStorage.setItem('mny.sqlite.migrated','yes')}catch{}render();document.querySelector('.local').textContent='● Локальная база подключена';
+ }catch{$('#app').innerHTML='<section class="panel"><h2>Нужно запустить MNY</h2><p>Откройте файл «Запустить MNY.command» в папке проекта, затем обновите страницу. Данные браузера сохранены.</p><button onclick="location.reload()">Повторить подключение</button></section>'}
+}
 function toast(t){$('#toast').textContent=t;$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',3500)}
 function change(text,fn){undo.push(JSON.stringify(db));if(undo.length>80)undo.shift();fn();if(g())g().log.unshift(`${new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})} — ${text}`);save();render()}
 function btn(a,t,cls='',extra=''){return `<button data-action="${a}" class="${cls}" ${extra}>${t}</button>`}function options(list,selected,empty=true){return `${empty?'<option value="">Выберите игрока</option>':''}${list.map(p=>`<option value="${esc(p.id)}" ${p.id===selected?'selected':''}>${esc(p.name)}</option>`).join('')}`}
@@ -64,7 +78,7 @@ if(a.startsWith('end')){change('Партия завершена ведущей',
 if(a==='closegame')change('Возврат к обзору',()=>{db.active=null;view='home'});
 });
 document.addEventListener('change',e=>{const el=e.target;if(el.dataset.seat!==undefined)change('Изменена рассадка',()=>g().seats[Number(el.dataset.seat)].id=el.value);if(el.dataset.role!==undefined)change('Назначена роль',()=>g().seats[Number(el.dataset.role)].role=el.value);if(el.dataset.night)change('Обновлена ночная отметка',()=>{if(el.value==='')delete g().nightDraft[el.dataset.night];else g().nightDraft[el.dataset.night]=Number(el.value)});if(el.dataset.vote!==undefined){const v=Number(el.value);if(!Number.isInteger(v)||v<0||v>alive().length){toast('Введите допустимое целое число голосов');render();return}change('Исправлены голоса',()=>g().ballot.votes[el.dataset.vote]=v)}if(el.id==='speaker'&&el.value!=='')change('Выбран говорящий',()=>g().speaker=Number(el.value));});
-$('.brand').onclick=e=>{e.preventDefault();view='home';render()};render();
+$('.brand').onclick=e=>{e.preventDefault();view='home';render()};if(typeof fetch==='function')loadDatabase();else render();
 
 
 function nicknameSuggestions(){const input=$('#nickname'),box=$('#nickname-suggestions');if(!input||!box)return;const text=input.value.trim(),query=text.toLocaleLowerCase();const matches=text?db.players.filter(p=>p.name.toLocaleLowerCase().includes(query)&&!g().seats.some(s=>s.id===p.id)):[];box.hidden=!text;input.setAttribute?.('aria-expanded',String(!!text));box.innerHTML=!text?'':matches.length?matches.map(p=>btn('pick-player',`<span>${esc(p.name)}</span><small>${esc(p.fullName||'Игрок клуба')}</small>`,'nickname-option',`data-id="${p.id}"`)).join(''):btn('guest',`<span>Гость · ${esc(text)}</span><small>Только в этой партии</small>`,'nickname-option');}

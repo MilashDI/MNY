@@ -8,4 +8,4 @@ Fouls accumulate for the whole game. The third skips the current unspoken day or
 
 Night actions are marks for victim, sheriff check, and don check; never reveal check results. Red wins when all black roles are eliminated; black wins at parity. Persist games locally and retain evening statistics.
 
-No build or dependencies. Run with python3 -m http.server 3000 --bind 127.0.0.1. Run tests with node --test tests/*.test.cjs. Maintain accessible controls and responsive layouts; use restrained winter styling.
+No build or third-party dependencies. Run with python3 server.py. Persist all user data in data/mny.sqlite3 through the local API. Keep data/ and user photos out of Git. Browser storage is used only for one-time migration. Run tests with node --test tests/*.test.cjs. Maintain accessible controls and responsive layouts; use restrained winter styling.
