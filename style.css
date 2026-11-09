@@ -29,22 +29,24 @@
 @media(max-width:1000px){.header-right{gap:0}}
 @media(max-width:650px){header{gap:12px;align-items:center;flex-wrap:wrap}.brand{order:0}.header-right{order:1}.header-club{width:32px;height:54px}nav{order:2;width:100%;justify-content:space-between}nav button{padding:8px 0}}
 
-/* New Year Midnight: violet light, silver and a deep night sky. */
-:root{color-scheme:dark;--bg:#111322;--panel:#1b1d33;--line:#393c5b;--muted:#b0b1cb;--text:#f4f3ff;--accent:#b5a8ff;--ice:#d4cdfa;--silver:#e4e7f2}
-body{background:radial-gradient(ellipse at 83% 22%,#7861c62b,transparent 44%),radial-gradient(ellipse at 8% 85%,#3e407833,transparent 55%),var(--bg)}
-button.primary{color:#171329;background:#b5a8ff;border-color:#b5a8ff}
-button.primary:hover{background:#c9bfff;border-color:#c9bfff;box-shadow:0 0 30px #a695ff25}
-button:hover{background:#b5a8ff0c}
-.launch-secondary{background:#b5a8ff0c;border-color:#8e85bf70;color:var(--text)}
-.launch-secondary:hover{background:#b5a8ff1c}
+/* Mandarin Evening: warm holiday lights against soft graphite. */
+:root{color-scheme:dark;--bg:#22232b;--panel:#2d2e38;--line:#4c4544;--muted:#c3b4a8;--text:#fff0dc;--accent:#ff984d;--ice:#f6c98c;--silver:#ffe0ad}
+body{background:radial-gradient(ellipse at 83% 22%,#b7682826,transparent 44%),radial-gradient(ellipse at 8% 85%,#53423833,transparent 55%),var(--bg)}
+button.primary{color:#302016;background:#ff984d;border-color:#ff984d}
+button.primary:hover{background:#ffb071;border-color:#ffb071;box-shadow:0 0 30px #ff984d25}
+button:hover{background:#ff984d0c}
+.launch-secondary{background:#ffcf9109;border-color:#bd956570;color:var(--text)}
+.launch-secondary:hover{background:#ffcf9118}
 .panel,.seat,dialog{background:var(--panel)}
-.home-stats .summary-card{background:linear-gradient(145deg,#28274299,#1b1d33cc)}
-.seat.current{background:#332f50}
-input,select{background:#15172b;color:var(--text)}
+.home-stats .summary-card{background:linear-gradient(145deg,#43372e66,#2d2e38cc)}
+.seat.current{background:#4b3b30}
+input,select{background:#24242d;color:var(--text)}
 .header-club{color:var(--silver)}
-.role.black,button.danger{color:#f0a5bd}
-.badge{background:#b5a8ff19}
-.snow{opacity:.4;background-image:radial-gradient(2px 2px at 15% 20%,#eeeaff 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#c3b7ff 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
-.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #9d84f02c)}
-.winter-emblem:before{background:radial-gradient(circle,#b5a8ff18,transparent 70%)}
+.role.black,button.danger{color:#ffb0a1}
+.badge{background:#ff984d19}
+.snow{opacity:.3;background-image:radial-gradient(2px 2px at 15% 20%,#fff0dc 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#ffcf91 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
+.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #ff984d28)}
+.winter-emblem:before{background:radial-gradient(circle,#ffb0711a,transparent 70%)}
 :focus-visible{outline:2px solid var(--accent)}
+header{position:relative}
+header:after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:16px;pointer-events:none;background:radial-gradient(ellipse 3px 5px at 30px 7px,#ffe0a6 85%,transparent 100%) 0 0 / 100px 16px repeat-x;filter:drop-shadow(0 0 5px #ffb95f99);opacity:.85}
