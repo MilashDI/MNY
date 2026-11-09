@@ -29,26 +29,26 @@
 @media(max-width:1000px){.header-right{gap:0}}
 @media(max-width:650px){header{gap:12px;align-items:center;flex-wrap:wrap}.brand{order:0}.header-right{order:1}.header-club{width:32px;height:54px}nav{order:2;width:100%;justify-content:space-between}nav button{padding:8px 0}}
 
-/* Dressed Christmas Tree: evergreen, cranberry and snow, with warm lights. */
-:root{color-scheme:dark;--bg:#0e251d;--panel:#173329;--line:#345345;--muted:#afc5b7;--text:#f6f7ed;--accent:#ed8790;--ice:#d8e8dc;--silver:#f2f5ec}
-body{background:radial-gradient(ellipse at 83% 22%,#3f77502b,transparent 44%),radial-gradient(ellipse at 8% 85%,#264f3633,transparent 55%),var(--bg)}
-button.primary{color:#fff7f2;background:#b9384b;border-color:#cd4a5c}
-button.primary:hover{background:#ce4357;border-color:#e36573;box-shadow:0 0 30px #c73e5425}
-button:hover{background:#d8e8dc0b}
-.launch-secondary{background:#d8e8dc09;border-color:#92b49c65;color:var(--text)}
-.launch-secondary:hover{background:#d8e8dc18}
+/* Snow-covered Fir: dark evergreen, snow white and silver. */
+:root{color-scheme:dark;--bg:#102820;--panel:#19392f;--line:#3a584c;--muted:#b2c9bf;--text:#f5f8f5;--accent:#e1eee7;--ice:#d8e8e0;--silver:#e9f1ee}
+body{background:radial-gradient(ellipse at 83% 22%,#729c8c22,transparent 44%),radial-gradient(ellipse at 8% 85%,#355d4d22,transparent 55%),var(--bg)}
+button.primary{color:#17382c;background:#edf5ef;border-color:#edf5ef}
+button.primary:hover{background:#fff;border-color:#fff;box-shadow:0 0 30px #e1eee720}
+button:hover{background:#d8e8e00b}
+.launch-secondary{background:#d8e8e009;border-color:#9db9ac70;color:var(--text)}
+.launch-secondary:hover{background:#d8e8e018}
 .panel,.seat,dialog{background:var(--panel)}
-.home-stats .summary-card{background:linear-gradient(145deg,#254a3380,#173329cc)}
-.seat.current{background:#2b4e37}
-input,select{background:#10291f;color:var(--text)}
+.home-stats .summary-card{background:linear-gradient(145deg,#31554670,#19392fcc)}
+.seat.current{background:#335947}
+input,select{background:#122e24;color:var(--text)}
 .header-club{color:var(--silver)}
 .role.black,button.danger{color:#ffadb5}
-.badge{background:#ed879019}
-.summary-number,.summary-link>span:last-child{color:#e1ece1}
-.eyebrow{color:#d0e2d2}
-.snow{opacity:.4;background-image:radial-gradient(2px 2px at 15% 20%,#f6f7ed 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#d8e8dc 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
-.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #c8445020)}
-.winter-emblem:before{background:radial-gradient(circle,#ed879015,transparent 70%)}
+.badge{background:#e1eee719}
+.summary-number,.summary-link>span:last-child{color:var(--accent)}
+.eyebrow{color:#d0e4d9}
+.snow{opacity:.5;background-image:radial-gradient(2px 2px at 15% 20%,#fff 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#e4f0e9 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
+.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #e1eee71c)}
+.winter-emblem:before{background:radial-gradient(circle,#e1eee715,transparent 70%)}
 :focus-visible{outline:2px solid var(--accent)}
 header{position:relative}
 header:after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:16px;pointer-events:none;background:radial-gradient(ellipse 3px 5px at 30px 7px,#ffe0a6 85%,transparent 100%) 0 0 / 100px 16px repeat-x;filter:drop-shadow(0 0 5px #ffb95f99);opacity:.85}
