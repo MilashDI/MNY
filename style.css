@@ -72,3 +72,16 @@ input,select{background:#fffaf2;color:var(--text)}
 .snow{opacity:.4;background-image:radial-gradient(2px 2px at 15% 20%,#b4828d 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#b4828d 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
 .winter-emblem{color:#952747;filter:drop-shadow(0 10px 35px #95274720)}
 .winter-emblem:before{background:radial-gradient(circle,#efd0c733,transparent 70%)}
+/* Selected Cherry + Cream: lighter milk tones and a visible warm garland. */
+:root{--bg:#fffcf7;--panel:#fffefd;--line:#e5d7d3;--muted:#806970;--text:#492a37}
+body{background:radial-gradient(ellipse at 84% 18%,#f7e9e64d,transparent 46%),radial-gradient(ellipse at 8% 90%,#fff1dc33,transparent 55%),var(--bg)}
+.home-stats .summary-card{background:linear-gradient(145deg,#ffffff,#fbf5f1)}
+.launch-secondary{background:#ffffff88;border-color:#cdb4bc}
+.launch-secondary:hover{background:#f7eeed}
+input,select{background:#fffefd}
+header:after{content:none}
+.holiday-garland{position:absolute;left:0;right:0;top:calc(100% - 3px);height:38px;pointer-events:none;overflow:visible;z-index:1}
+.garland-wire{fill:none;stroke:#b8a491;stroke-width:.85;opacity:.8}
+.garland-socket{fill:#a88f76}
+.garland-bulb{fill:#ffd989;stroke:#d4a35a;stroke-width:.6;filter:drop-shadow(0 0 4px #f6b74688)}
+.garland-halo{fill:#ffce6b;opacity:.13}
