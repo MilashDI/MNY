@@ -179,3 +179,6 @@ header:after{content:none}
 
 /* Hearts identify the two ordinary team roles. */
 .role-icon-civil{color:#ce3048}.role-icon-mafia{color:#111}.role-choice.selected:has(.role-icon-civil){background:#f7e0e6;border-color:#d999aa;box-shadow:0 2px 7px #95274716}.role-trigger.assigned:has(.role-icon-civil){background:#f7e0e6;border-color:#d999aa}
+
+/* A quiet label separates nominations from the phase title. */
+.phase-title{gap:18px}.phase-title .nomination-strip{gap:14px}.nomination-divider{width:1px;height:30px;background:#d8c6cd;flex-shrink:0}.nomination-title{font-size:14px;color:var(--muted);white-space:nowrap}@media(max-width:650px){.phase-title .nomination-strip{gap:10px}.nomination-title{font-size:12px}}
