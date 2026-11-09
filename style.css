@@ -207,3 +207,6 @@ header:after{content:none}
 @keyframes vote-row{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.vote-current .nomination-chip,.vote-counts,.vote-summary{animation:none}}
 @media(max-width:650px){.vote-start{margin-left:0}.vote-count{width:38px;height:40px}.nomination-order{gap:16px}.voting-inline{margin-top:4px}}
+
+.elimination-panel .removal-number.eliminated{background:#e6e4e4;color:#8c8789;border-color:#d5d1d2;text-decoration:line-through;text-decoration-thickness:1.5px}
+.elimination-panel .removal-number.eliminated:hover{background:#dcd9da;border-color:#b9b3b6}
