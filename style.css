@@ -88,3 +88,5 @@ header:after{content:none}
 
 /* Match club identity to the MNY wordmark. */
 .header-club{color:var(--text)}
+/* Slightly reduce the club mark while keeping its header alignment. */
+.header-club svg{transform:scale(.9);transform-origin:center}
