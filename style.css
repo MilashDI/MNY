@@ -182,3 +182,7 @@ header:after{content:none}
 
 /* A quiet label separates nominations from the phase title. */
 .phase-title{gap:18px}.phase-title .nomination-strip{gap:14px}.nomination-divider{width:1px;height:30px;background:#d8c6cd;flex-shrink:0}.nomination-title{font-size:14px;color:var(--muted);white-space:nowrap}@media(max-width:650px){.phase-title .nomination-strip{gap:10px}.nomination-title{font-size:12px}}
+/* Make the voting title comparable to the day heading. */
+.nomination-title{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.2;color:var(--text);letter-spacing:-.4px}
+.nomination-divider{height:36px}
+@media(max-width:650px){.nomination-title{font-size:27px}.nomination-divider{height:32px}}
