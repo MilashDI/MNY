@@ -15,3 +15,7 @@
 .summary-link:hover{background:transparent;border-color:var(--gold);color:var(--gold)}
 .summary-link>span:last-child{font-size:20px;color:var(--gold)}
 @media(max-width:650px){.home-stats{grid-template-columns:1fr;gap:14px}.home-stats .summary-card{padding:24px}.summary-value{margin:22px 0}.summary-number{font-size:42px}}
+/* Give the ornament a balanced footprint beside the main actions. */
+.hero .art{min-width:0}
+.hero .winter-emblem{width:100%;max-width:420px}
+.hero .winter-emblem svg{width:100%;height:auto;overflow:visible}
