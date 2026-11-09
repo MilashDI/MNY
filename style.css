@@ -53,18 +53,22 @@ input,select{background:#2c1522;color:var(--text)}
 header{position:relative}
 header:after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:16px;pointer-events:none;background:radial-gradient(ellipse 3px 5px at 30px 7px,#ffe0a6 85%,transparent 100%) 0 0 / 100px 16px repeat-x;filter:drop-shadow(0 0 5px #ffb95f99);opacity:.85}
 
-/* Cherry + Graphite palette preview. */
-:root{--bg:#202127;--panel:#2c2d34;--line:#4b454e;--muted:#c1bac2;--text:#f7f5f6;--accent:#e5a6b8;--silver:#eeeaed}
-body{background:radial-gradient(ellipse at 83% 22%,#8c355b1d,transparent 44%),radial-gradient(ellipse at 8% 85%,#41414c26,transparent 55%),var(--bg)}
-button.primary{color:#fff6f8;background:#a52e50;border-color:#c04e6e}
-button.primary:hover{background:#bc3c61;border-color:#df7795;box-shadow:0 0 30px #bc3c6120}
-.launch-secondary{background:#eee8ed06;border-color:#99899570}
-.launch-secondary:hover{background:#eee8ed13}
-.home-stats .summary-card{background:linear-gradient(145deg,#45323f60,#2c2d34cc)}
-.seat.current{background:#493440}
-input,select{background:#25242c}
-.summary-number,.summary-link>span:last-child{color:var(--accent)}
-.eyebrow{color:#ded4dc}
+/* Cherry + Cream palette preview. */
+:root{color-scheme:light;--bg:#fff5e8;--panel:#fffaf2;--line:#dec9c4;--muted:#84666b;--text:#4a2534;--accent:#952747;--silver:#952747}
+body{background:radial-gradient(ellipse at 83% 22%,#efd0c74d,transparent 44%),radial-gradient(ellipse at 8% 85%,#f6e3c84d,transparent 55%),var(--bg)}
+button.primary{color:#fff7ee;background:#952747;border-color:#952747}
+button.primary:hover{background:#b1395a;border-color:#b1395a;box-shadow:0 0 30px #95274715}
+button:hover{background:#95274708}
+.launch-secondary{background:#fffaf2aa;border-color:#c39ba670;color:var(--text)}
+.launch-secondary:hover{background:#f5e1de}
+.panel,.seat,dialog{background:var(--panel)}
+.home-stats .summary-card{background:linear-gradient(145deg,#fffdf7,#f8e9e2)}
+.seat.current{background:#f1dce0}
+input,select{background:#fffaf2;color:var(--text)}
+.summary-number,.summary-link>span:last-child,.eyebrow{color:var(--accent)}
 .header-club{color:var(--silver)}
-.winter-emblem{color:var(--silver);filter:drop-shadow(0 0 40px #b2355820)}
-.winter-emblem:before{background:radial-gradient(circle,#e5a6b815,transparent 70%)}
+.role.black,button.danger{color:#a52b46}
+.badge{background:#95274710}
+.snow{opacity:.4;background-image:radial-gradient(2px 2px at 15% 20%,#b4828d 50%,transparent 60%),radial-gradient(1px 1px at 75% 40%,#b4828d 50%,transparent 60%),radial-gradient(1px 1px at 45% 80%,#fff 50%,transparent 60%)}
+.winter-emblem{color:#952747;filter:drop-shadow(0 10px 35px #95274720)}
+.winter-emblem:before{background:radial-gradient(circle,#efd0c733,transparent 70%)}
