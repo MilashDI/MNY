@@ -19,3 +19,5 @@
 .hero .art{min-width:0}
 .hero .winter-emblem{width:100%;max-width:420px}
 .hero .winter-emblem svg{width:100%;height:auto;overflow:visible}
+/* Align the ornament body with the center of the two launch buttons. */
+.hero .winter-emblem{transform:translateY(-38px)}
