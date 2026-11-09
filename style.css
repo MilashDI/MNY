@@ -130,3 +130,5 @@ header:after{content:none}
 .compact-role-options:before{content:"";position:absolute;right:100%;top:0;bottom:0;width:9px}
 
 .role-clear{width:36px;height:36px;padding:4px;font-size:23px;line-height:1;color:#a52b46;border-color:#e2c3cc}.role-clear:hover{background:#f8e8ed}
+/* Day and night controls; round numbers stay internal. */
+.phase-switch{display:inline-flex;gap:4px;padding:4px;border:1px solid #dcc7cf;border-radius:12px;background:#f5eeeb}.phase-switch button{border:0;border-radius:8px;padding:10px 18px;color:var(--muted);font-weight:500}.phase-switch button.active{color:#fff7ee;background:#952747;box-shadow:0 2px 5px #9527471a}.phase-switch button.active:disabled{opacity:1;cursor:default}.phase-switch button:not(.active):disabled{opacity:.4}
