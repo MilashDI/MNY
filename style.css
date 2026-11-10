@@ -281,3 +281,5 @@ body.game-mode main{transition:padding-top .3s ease}body.game-mode.game-header-r
  .game-canvas>.section-top,.game-canvas>.section-top>.phase-title{min-height:44px;height:44px}
  .phase-title .nomination-strip{height:44px}
 }
+
+.night-sheriff .checked-before:not(.marked){background:#fff0b7;border-color:#e2c467;color:#725818}.night-don .checked-before:not(.marked){background:#dedbdd;border-color:#a49ca0;color:#302b2e}.night-sheriff .marked,.night-don .marked{box-shadow:0 0 0 2px #fffdfb,0 0 0 3px currentColor}
