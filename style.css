@@ -273,3 +273,11 @@ body.game-mode main{transition:padding-top .3s ease}body.game-mode.game-header-r
  .phase-title .nomination-strip{height:48px;min-height:0}
  .phase-title .nomination-order{align-self:center;flex-shrink:1}
 }
+/* Recover the larger game scale using spare outer margins, while keeping
+   the nomination line at a stable height. */
+@media(min-width:1001px){
+ body.game-mode main{padding-top:40px;padding-bottom:10px}
+ body.game-mode.game-header-revealed main{padding-top:calc(40px + var(--game-header-height,110px))}
+ .game-canvas>.section-top,.game-canvas>.section-top>.phase-title{min-height:44px;height:44px}
+ .phase-title .nomination-strip{height:44px}
+}
