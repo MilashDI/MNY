@@ -283,3 +283,5 @@ body.game-mode main{transition:padding-top .3s ease}body.game-mode.game-header-r
 }
 
 .night-sheriff .checked-before:not(.marked){background:#fff0b7;border-color:#e2c467;color:#725818}.night-don .checked-before:not(.marked){background:#dedbdd;border-color:#a49ca0;color:#302b2e}.night-sheriff .marked,.night-don .marked{box-shadow:0 0 0 2px #fffdfb,0 0 0 3px currentColor}
+
+.night-number{position:relative}.check-repeat{position:absolute;right:-4px;top:-6px;display:grid;place-items:center;min-width:20px;height:16px;padding:0 3px;border-radius:6px;background:#fffaf3;border:1px solid #b9adb1;color:#51454b;font-size:9px;font-weight:650;line-height:1;pointer-events:none}.night-sheriff .check-repeat{background:#fff1b8;border-color:#d2ad44;color:#725413}.night-don .check-repeat{background:#302b2e;border-color:#302b2e;color:#fff}
