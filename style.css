@@ -210,3 +210,11 @@ header:after{content:none}
 
 .elimination-panel .removal-number.eliminated{background:#e6e4e4;color:#8c8789;border-color:#d5d1d2;text-decoration:line-through;text-decoration-thickness:1.5px}
 .elimination-panel .removal-number.eliminated:hover{background:#dcd9da;border-color:#b9b3b6}
+
+/* Candidate removal: a quiet minus attached to the number. */
+.nomination-remove{display:grid;left:auto;right:-9px;bottom:auto;top:-11px;width:24px;height:24px;border-radius:8px;transform:translateY(3px) scale(.9);background:#fffaf5;border-color:#e0cbd1;color:#8e4058;box-shadow:0 2px 6px #492a3710;font-size:19px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s}
+.nomination-item:hover .nomination-remove,.nomination-item:focus-within .nomination-remove,.nomination-item.selected .nomination-remove{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.nomination-remove:hover{background:#f8e5eb;border-color:#bd7a90;color:#842b48}
+.nomination-item.selected .nomination-chip{box-shadow:none}
+.nomination-item.dragging .nomination-remove{opacity:0;visibility:hidden;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.nomination-remove{transition:none}}
