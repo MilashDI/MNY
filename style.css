@@ -220,3 +220,5 @@ header:after{content:none}
 @media(prefers-reduced-motion:reduce){.nomination-remove{transition:none}}
 
 .game-restart-actions{display:flex;justify-content:flex-end;margin-top:16px}.game-restart-actions .text-button{color:#967780;font-size:13px}.game-restart-actions .text-button:hover{color:#842b48;background:#f4e5e9}
+
+.best-move-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.best-move-heading h2{margin:0}.best-move-owner{font-size:13px;color:#967780;margin:10px 0 16px}.best-move-board .night-number.marked{background:#8a3345;color:#fff;border-color:#8a3345}.best-move-board .night-number:disabled:not(.marked){opacity:.35}.best-move-board{margin-top:18px}
