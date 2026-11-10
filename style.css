@@ -265,3 +265,11 @@ body.game-mode main{transition:padding-top .3s ease}body.game-mode.game-header-r
 }
 
 .host-player-name>.mute-indicator{flex-shrink:0;margin:0 0 0 -5px}
+/* Keep the original compact header height. Nomination controls use the
+   existing space above and below the line without increasing table height. */
+@media(min-width:1001px){
+ .game-canvas>.section-top{min-height:48px;height:48px}
+ .game-canvas>.section-top>.phase-title{min-height:48px;height:48px}
+ .phase-title .nomination-strip{height:48px;min-height:0}
+ .phase-title .nomination-order{align-self:center;flex-shrink:1}
+}
