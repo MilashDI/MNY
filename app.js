@@ -196,9 +196,9 @@ document.addEventListener('lostpointercapture',e=>{if(candidateDrag?.pointerId==
 
 
 function syncGameHeader(){const inGame=view==='game'&&!!g();document.body?.classList?.toggle('game-mode',inGame);if(!inGame){clearTimeout(headerRevealTimer);clearTimeout(headerCloseTimer);setGameHeader(false)}}
-function setGameHeader(open){const header=$('header');header?.classList?.toggle('game-header-open',open);$('.garland-trigger')?.setAttribute?.('aria-expanded',String(open));for(const node of header?.querySelectorAll?.('a,nav button')||[])if(open||view!=='game')node.removeAttribute('tabindex');else node.setAttribute('tabindex','-1')}
+function setGameHeader(open){const header=$('header');header?.classList?.toggle('game-header-open',open);document.body?.classList?.toggle('game-header-revealed',open&&view==='game');if(open&&header?.getBoundingClientRect)document.body?.style?.setProperty('--game-header-height',header.getBoundingClientRect().height+'px');$('.garland-trigger')?.setAttribute?.('aria-expanded',String(open));for(const node of header?.querySelectorAll?.('a,nav button')||[])if(open||view!=='game')node.removeAttribute('tabindex');else node.setAttribute('tabindex','-1')}
 const gameHeader=$('header'),garlandTrigger=$('.garland-trigger');
-garlandTrigger?.addEventListener?.('pointerenter',()=>{if(view!=='game')return;clearTimeout(headerCloseTimer);clearTimeout(headerRevealTimer);headerRevealTimer=setTimeout(()=>{if(view==='game')setGameHeader(true)},3000)});
+garlandTrigger?.addEventListener?.('pointerenter',()=>{if(view!=='game')return;clearTimeout(headerCloseTimer);clearTimeout(headerRevealTimer);headerRevealTimer=setTimeout(()=>{if(view==='game')setGameHeader(true)},700)});
 garlandTrigger?.addEventListener?.('pointerleave',()=>clearTimeout(headerRevealTimer));
 garlandTrigger?.addEventListener?.('click',()=>{if(view==='game'){clearTimeout(headerRevealTimer);setGameHeader(true)}});
 gameHeader?.addEventListener?.('pointerenter',()=>clearTimeout(headerCloseTimer));
