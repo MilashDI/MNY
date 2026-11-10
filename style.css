@@ -243,3 +243,13 @@ body.game-mode main{transition:padding-top .3s ease}body.game-mode.game-header-r
 
 /* Keep player nicknames readable when the desktop table is fitted. */
 .host-player-name>strong{font-size:18px;line-height:1.25}@media(max-width:650px){.host-player-name>strong{font-size:16px}}
+/* Slightly larger controls within the existing roster row height. */
+.host-player-row .num{width:38px;height:38px;font-size:18px}
+.nominate-button{width:36px;height:36px;padding:6px;border-radius:9px}.nominate-button svg{width:23px;height:23px}
+.foul-cycle{min-width:90px;min-height:40px;gap:8px}.foul-cycle .foul-dot{width:10px;height:10px}
+.technical-foul{width:40px;min-width:40px;height:40px;font-size:15px;border-radius:9px}
+.host-table-heading .regular-fouls-heading{width:90px}.host-table-heading .technical-foul-heading{width:40px}
+.host-player-row .role-trigger{width:40px;height:40px}.host-player-row .role-trigger svg{width:24px;height:24px}
+.nomination-chip{width:38px;height:38px;font-size:16px}
+.removal-number{height:37px;font-size:15px}.night-number{min-height:38px;font-size:16px}
+.best-move-number,.best-move-picked span{min-width:28px;height:30px;font-size:14px}
