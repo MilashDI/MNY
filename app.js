@@ -1,4 +1,5 @@
 const E=MNY,KEY='mny.v1';
+let headerRevealTimer=null,headerCloseTimer=null;
 let db;try{db=JSON.parse(localStorage.getItem(KEY))}catch{}db=db||{players:[],games:[],active:null};let view='home',undo=[],storageOK=true;
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),g=()=>db.active,name=id=>db.players.find(p=>p.id===id)?.name||g()?.guests?.[id]||db.games.map(x=>x.guests?.[id]).find(Boolean)||'Игрок',who=i=>`№${i+1} · ${esc(name(g().seats[i].id))}`,alive=()=>g().seats.map((p,i)=>p.alive?i:null).filter(i=>i!==null);
 let databaseMode=false,databaseRevision=0,saveQueue=Promise.resolve(),databaseConflict=false;
@@ -103,7 +104,7 @@ function game(){if(g().phase==='setup'&&g().setupStep!=='roles')return setup();r
 function finished(){return `<section class="panel victory-card" role="status"><div class="eyebrow">Партия завершена</div><h2 class="winner">${g().winner==='red'?'Победа города':g().winner==='black'?'Победа мафии':'Без результата'}</h2><div class="victory-actions">${btn('closegame','К обзору вечера','primary')}${btn('history','Посмотреть статистику')}${btn('restart-game','↻ Начать игру заново','text-button')}${btn('undo','↶ Отменить итог','',''+(!undo.length?'disabled':''))}</div></section>`}
 
 function history(){const stats={};for(const game of db.games)for(const p of game.seats){const s=stats[p.id]??={games:0,wins:0};s.games++;if(game.winner&&(E.black(p)?game.winner==='black':game.winner==='red'))s.wins++}return `<div class="section-top"><div><div class="eyebrow">История и результаты</div><h1>Статистика вечера</h1></div><div class="actions">${btn('export','Экспорт JSON')}${btn('import','Импорт копии')}</div></div><section class="panel"><h2>Игроки</h2>${Object.keys(stats).length?`<table><thead><tr><th>Игрок</th><th>Партий</th><th>Побед</th><th>Поражений</th></tr></thead><tbody>${Object.entries(stats).map(([id,s])=>`<tr><td>${esc(name(id))}</td><td>${s.games}</td><td>${s.wins}</td><td>${db.games.filter(x=>x.winner&&x.seats.some(p=>p.id===id)).length-s.wins}</td></tr>`).join('')}</tbody></table>`:'<p>Здесь появятся результаты завершённых партий.</p>'}</section><section class="panel" style="margin-top:20px"><h2>Партии</h2>${db.games.map(x=>`<details><summary class="row">${new Date(x.created).toLocaleString('ru-RU')} · ${x.winner==='red'?'Победа города':x.winner==='black'?'Победа мафии':'Без результата'}</summary>${x.seats.map(p=>`<div class="row"><span class="num">${p.number}</span><span class="grow">${esc(name(p.id))}</span><span>${E.roles[p.role]}</span></div>`).join('')}<div class="log">${x.log.map(l=>`<div>${esc(l)}</div>`).join('')}</div></details>`).join('')||'<p>Пока нет завершённых партий.</p>'}</section>`}
-function render(){if(view==='game'&&!g())view='home';$('#app').innerHTML=view==='home'?home():view==='players'?players():view==='history'?history():game();tick()}
+function render(){if(view==='game'&&!g())view='home';syncGameHeader();$('#app').innerHTML=view==='home'?home():view==='players'?players():view==='history'?history():game();tick()}
 function modal(html){$('#dialog').innerHTML=html;$('#dialog').showModal()}
 function add(id){
  const p=db.players.find(p=>p.id===id);let photo=p?.photo||'',photoVersion=0;
@@ -192,3 +193,15 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&candidateDrag){e.pr
 document.addEventListener('keydown',e=>{const button=e.target.closest?.('[data-action="show-nominee-remove"]');if(!button||!e.altKey||!['ArrowLeft','ArrowRight'].includes(e.key)||!canEditNominees())return;e.preventDefault();const source=Number(button.dataset.i),position=g().nominated.indexOf(source),next=position+(e.key==='ArrowRight'?1:-1);if(next<0||next>=g().nominated.length)return;reorderNominees(source,g().nominated[next],e.key==='ArrowRight');document.querySelector(`.nomination-chip[data-i="${source}"]`)?.focus()});
 
 document.addEventListener('lostpointercapture',e=>{if(candidateDrag?.pointerId===e.pointerId)endCandidateDrag(true)});
+
+
+function syncGameHeader(){const inGame=view==='game'&&!!g();document.body?.classList?.toggle('game-mode',inGame);if(!inGame){clearTimeout(headerRevealTimer);clearTimeout(headerCloseTimer);setGameHeader(false)}}
+function setGameHeader(open){const header=$('header');header?.classList?.toggle('game-header-open',open);$('.garland-trigger')?.setAttribute?.('aria-expanded',String(open));for(const node of header?.querySelectorAll?.('a,nav button')||[])if(open||view!=='game')node.removeAttribute('tabindex');else node.setAttribute('tabindex','-1')}
+const gameHeader=$('header'),garlandTrigger=$('.garland-trigger');
+garlandTrigger?.addEventListener?.('pointerenter',()=>{if(view!=='game')return;clearTimeout(headerCloseTimer);clearTimeout(headerRevealTimer);headerRevealTimer=setTimeout(()=>{if(view==='game')setGameHeader(true)},3000)});
+garlandTrigger?.addEventListener?.('pointerleave',()=>clearTimeout(headerRevealTimer));
+garlandTrigger?.addEventListener?.('click',()=>{if(view==='game'){clearTimeout(headerRevealTimer);setGameHeader(true)}});
+gameHeader?.addEventListener?.('pointerenter',()=>clearTimeout(headerCloseTimer));
+gameHeader?.addEventListener?.('pointerleave',()=>{clearTimeout(headerRevealTimer);if(!gameHeader.matches(':focus-within'))headerCloseTimer=setTimeout(()=>setGameHeader(false),200)});
+gameHeader?.addEventListener?.('focusout',e=>{if(!gameHeader.contains(e.relatedTarget))setGameHeader(false)});
+gameHeader?.addEventListener?.('keydown',e=>{if(e.key==='Escape'){setGameHeader(false);garlandTrigger.focus()}});
