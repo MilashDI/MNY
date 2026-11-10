@@ -263,3 +263,5 @@ body.game-mode main{transition:padding-top .3s ease}body.game-mode.game-header-r
  .phase-title .nomination-item{flex-shrink:0}
  .phase-title .nomination-title,.phase-title .nomination-divider{flex-shrink:0}
 }
+
+.host-player-name>.mute-indicator{flex-shrink:0;margin:0 0 0 -5px}
