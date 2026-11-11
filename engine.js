@@ -11,6 +11,6 @@ function validate(g){const count=r=>g.seats.filter(p=>p.role===r).length;return 
 function result(g){const b=g.ballot,values=b.candidates.map(i=>Number(b.votes[i]||0));const max=Math.max(...values);return b.candidates.filter((i,k)=>values[k]===max);}
 function validExtraScore(value){return Number.isInteger(value)&&value>=-40&&value<=20&&(value<=0||value%2===0)}
 function adjustExtraScore(value,direction){if(!validExtraScore(value))value=0;const next=value+(direction>0?(value<0?1:2):(value>0?-2:-1));return Math.max(-40,Math.min(20,next))}
-function score(g,p){const base=g.winner&&((black(p)&&g.winner==='black')||(!black(p)&&g.winner==='red'))?20:0,extra=validExtraScore(p.extraScoreTenths)?p.extraScoreTenths:0;return {base:base/10,extra:extra/10,total:(base+extra)/10}}
+function score(g,p){const base=g.winner&&((black(p)&&g.winner==='black')||(!black(p)&&g.winner==='red'))?20:(g.winner?10:0),extra=validExtraScore(p.extraScoreTenths)?p.extraScoreTenths:0;return {base:base/10,extra:extra/10,total:(base+extra)/10}}
 const api={roles,black,create,nextAlive,startDay,foul,remove,winner,validate,result,validExtraScore,adjustExtraScore,score};if(typeof module!=='undefined')module.exports=api;root.MNY=api;
 })(typeof window!=='undefined'?window:globalThis);
