@@ -11,6 +11,15 @@ function validate(g){const count=r=>g.seats.filter(p=>p.role===r).length;return 
 function result(g){const b=g.ballot,values=b.candidates.map(i=>Number(b.votes[i]||0));const max=Math.max(...values);return b.candidates.filter((i,k)=>values[k]===max);}
 function validExtraScore(value){return Number.isInteger(value)&&value>=-40&&value<=20&&(value<=0||value%2===0)}
 function adjustExtraScore(value,direction){if(!validExtraScore(value))value=0;const next=value+(direction>0?(value<0?1:2):(value>0?-2:-1));return Math.max(-40,Math.min(20,next))}
-function score(g,p){const base=g.winner&&((black(p)&&g.winner==='black')||(!black(p)&&g.winner==='red'))?20:(g.winner?10:0),extra=validExtraScore(p.extraScoreTenths)?p.extraScoreTenths:0;return {base:base/10,extra:extra/10,total:(base+extra)/10}}
-const api={roles,black,create,nextAlive,startDay,foul,remove,winner,validate,result,validExtraScore,adjustExtraScore,score};if(typeof module!=='undefined')module.exports=api;root.MNY=api;
+function firstNightVictim(g){const first=g.nights.find(n=>n.day===0);return !first||first.missed||!Number.isInteger(first.kill)||first.kill<0||first.kill>=g.seats.length?null:first.kill}
+function firstKilled(g){const victim=firstNightVictim(g);if(victim===null)return null;const second=g.nights.find(n=>n.day===1),departures=second?.nonNightDepartures??g.seats.filter(p=>!p.alive&&/^(Удалён|Заголосован|Поднят при равенстве|4 фола)/.test(p.reason||'')).length;return departures>=2?null:victim}
+function bestMove(g,p){const owner=firstKilled(g);if(owner===null||g.seats[owner]!==p)return {hits:0,tenths:0};const picks=[...new Set(g.bestMoves?.[owner]||[])].filter(i=>Number.isInteger(i)&&g.seats[i]).slice(0,3),hits=picks.filter(i=>black(g.seats[i])).length;return {hits,tenths:picks.length===3?(hits===3?8:hits===2?4:0):0}}
+function drawSurvivor(g,p){return Array.isArray(g.drawAlive)?g.drawAlive.includes(g.seats.indexOf(p)):p.alive}
+function canAssignExtra(g,p){return !(g.winner==='draw'&&drawSurvivor(g,p))}
+function extraScoreLimit(g,p){if(!canAssignExtra(g,p))return 0;return g.seats[firstNightVictim(g)]===p?16-bestMove(g,p).tenths:20}
+function effectiveExtraScore(g,p){if(!canAssignExtra(g,p))return 0;return Math.min(validExtraScore(p.extraScoreTenths)?p.extraScoreTenths:0,extraScoreLimit(g,p))}
+function score(g,p){const base=g.winner==='draw'?(drawSurvivor(g,p)?5:10):g.winner&&((black(p)&&g.winner==='black')||(!black(p)&&g.winner==='red'))?20:(g.winner?10:0),lh=bestMove(g,p),extra=effectiveExtraScore(g,p);return {base:base/10,bestMove:lh.tenths/10,hits:lh.hits,extra:extra/10,total:(base+extra+lh.tenths)/10}}
+function isDraw(g){const nights=g.nights.filter(n=>n.day>=0).slice(-3);if(nights.length!==3||nights[1].day!==nights[0].day+1||nights[2].day!==nights[1].day+1||!Array.isArray(nights[0].startedAlive))return false;const current=g.seats.flatMap((p,i)=>p.alive?[i]:[]);return current.length===nights[0].startedAlive.length&&current.every(i=>nights[0].startedAlive.includes(i))}
+
+const api={roles,black,create,nextAlive,startDay,foul,remove,winner,validate,result,validExtraScore,adjustExtraScore,score,firstKilled,firstNightVictim,bestMove,canAssignExtra,extraScoreLimit,effectiveExtraScore,isDraw,drawSurvivor};if(typeof module!=='undefined')module.exports=api;root.MNY=api;
 })(typeof window!=='undefined'?window:globalThis);
