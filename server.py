@@ -34,6 +34,23 @@ def valid_state(value):
             and len({p['id'] for p in value['players']}) == len(value['players'])
             and (value.get('active') is None or isinstance(value['active'], dict)))
 
+def broadcast_best_move(game, index):
+    nights = game.get('nights', [])
+    first = next((night for night in nights if night.get('day') == 0), None)
+    if not first or first.get('missed') or type(first.get('kill')) is not int or first['kill'] != index:
+        return []
+    second = next((night for night in nights if night.get('day') == 1), {})
+    departures = second.get('nonNightDepartures')
+    if departures is None:
+        departures = sum(not seat.get('alive', True) and bool(re.match(r'^(Удалён|Заголосован|Поднят при равенстве|4 фола)', seat.get('reason') or '')) for seat in game.get('seats', []))
+    if departures >= 2:
+        return []
+    picks = []
+    for pick in game.get('bestMoves', {}).get(str(index), []):
+        if type(pick) is int and 0 <= pick < len(game.get('seats', [])) and pick+1 not in picks:
+            picks.append(pick+1)
+    return picks[:3]
+
 def broadcast_events(game):
     if not game:
         return []
@@ -142,7 +159,7 @@ class Handler(SimpleHTTPRequestHandler):
                     profile = profiles.get(seat.get('id'), {})
                     photo = profile.get('photo', '')
                     photo_url = '/api/broadcast-photo?id=' + quote(str(seat.get('id', '')), safe='') + '&v=' + hashlib.sha256(photo.encode()).hexdigest()[:16] if photo else None
-                    seats.append({'number': i+1, 'name': game.get('guests', {}).get(seat.get('id')) or profile.get('name', ''), 'photo': photo_url, 'role': seat.get('role') if seat.get('roleAssigned') is True or (seat.get('roleAssigned') is None and (seat.get('role') != 'civil' or game.get('phase') != 'setup')) else None, 'alive': seat.get('alive', True), 'reason': seat.get('reason')})
+                    seats.append({'number': i+1, 'name': game.get('guests', {}).get(seat.get('id')) or profile.get('name', ''), 'photo': photo_url, 'role': seat.get('role') if seat.get('roleAssigned') is True or (seat.get('roleAssigned') is None and (seat.get('role') != 'civil' or game.get('phase') != 'setup')) else None, 'alive': seat.get('alive', True), 'reason': seat.get('reason'), 'bestMove': broadcast_best_move(game, i)})
             return self.reply(200, {'gameId': game.get('id') if game else None, 'seats': seats, 'events': broadcast_events(game), 'demoSummary': demo_summary})
         if path == '/api/state':
             with LOCK, connect() as conn:

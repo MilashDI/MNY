@@ -16,3 +16,9 @@
 .demo-caption{top:10vh;left:2.2vw;width:95.6vw;font-size:1.05vw;text-align:left}
 
 .event-day{display:flex;align-items:center;gap:.2vw}.history-number,.history-miss{display:inline-grid;place-items:center;min-width:1.5vw;height:1.5vw;border-radius:.22vw;font-size:.9vw;font-weight:700;border:1px solid #ffffff24}.history-red{background:#a53655;color:#fff5ec}.history-black{background:#17151b;color:#fff5ec;border-color:#756572}.history-sheriff{background:#efd16b;color:#3d3014}.history-unknown{background:#5b505c;color:#fff5ec}.history-miss{color:#e6d6dc;border-color:transparent}
+
+.broadcast-player{position:relative;overflow:visible}.portrait{border-radius:.5vw .5vw 0 0}.nickname{border-radius:0 0 .5vw .5vw}.broadcast-best-move{position:absolute;bottom:calc(100% + .5vw);left:0;right:0;display:flex;justify-content:center;gap:.3vw}.broadcast-best-move span{display:grid;place-items:center;width:1.8vw;height:1.8vw;border-radius:.3vw;background:#fff1df;color:#422433;border:1px solid #caa7b4;font-size:1.05vw;font-weight:750;box-shadow:0 .15vw .4vw #0004}
+
+.broadcast-best-move .best-move-black{background:#17151b;color:#fff5ec;border-color:#756572}
+
+.broadcast-best-move .best-move-red{background:#a53655;color:#fff5ec;border-color:#c56c84}.broadcast-best-move .best-move-sheriff{background:#efd16b;color:#3d3014;border-color:#f3dda0}

@@ -41,6 +41,15 @@ class DatabaseTests(unittest.TestCase):
         game['voteDisqualifications'].append({'seat': 1, 'targets': [2]})
         self.assertEqual(votes(), [(0, 0), (2, 2)])
 
+    def test_best_move_only_for_eligible_first_night_victim(self):
+        game = {'seats': [{'alive': False, 'reason': 'Убит ночью'}, {'alive': True}, {'alive': True}], 'nights': [{'day': 0, 'kill': 0}], 'bestMoves': {'0': [0, 1, 2]}}
+        self.assertEqual(server.broadcast_best_move(game, 0), [1, 2, 3])
+        self.assertEqual(server.broadcast_best_move(game, 1), [])
+        game['nights'].append({'day': 1, 'nonNightDepartures': 2})
+        self.assertEqual(server.broadcast_best_move(game, 0), [])
+        game['nights'][0]['missed'] = True
+        self.assertEqual(server.broadcast_best_move(game, 0), [])
+
     def test_persistence_restart_conflicts_and_private_files(self):
         with tempfile.TemporaryDirectory() as directory:
             server.DATABASE = Path(directory) / 'mny.sqlite3'
