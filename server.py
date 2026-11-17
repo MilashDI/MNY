@@ -34,6 +34,10 @@ def valid_state(value):
             and len({p['id'] for p in value['players']}) == len(value['players'])
             and (value.get('active') is None or isinstance(value['active'], dict)))
 
+def broadcast_mode(state, game):
+    setting = state.get('broadcast') or {}
+    return 'result' if game and game.get('phase') == 'finished' and game.get('winner') in ('red', 'black', 'draw') and setting.get('mode') == 'result' and setting.get('gameId') == game.get('id') else 'game'
+
 def broadcast_best_move(game, index):
     nights = game.get('nights', [])
     first = next((night for night in nights if night.get('day') == 0), None)
@@ -160,7 +164,7 @@ class Handler(SimpleHTTPRequestHandler):
                     photo = profile.get('photo', '')
                     photo_url = '/api/broadcast-photo?id=' + quote(str(seat.get('id', '')), safe='') + '&v=' + hashlib.sha256(photo.encode()).hexdigest()[:16] if photo else None
                     seats.append({'number': i+1, 'name': game.get('guests', {}).get(seat.get('id')) or profile.get('name', ''), 'photo': photo_url, 'role': seat.get('role') if seat.get('roleAssigned') is True or (seat.get('roleAssigned') is None and (seat.get('role') != 'civil' or game.get('phase') != 'setup')) else None, 'alive': seat.get('alive', True), 'reason': seat.get('reason'), 'bestMove': broadcast_best_move(game, i)})
-            return self.reply(200, {'gameId': game.get('id') if game else None, 'seats': seats, 'events': broadcast_events(game), 'demoSummary': demo_summary})
+            return self.reply(200, {'gameId': game.get('id') if game else None, 'seats': seats, 'events': broadcast_events(game), 'demoSummary': demo_summary, 'winner': game.get('winner') if game else None, 'mode': broadcast_mode(state, game)})
         if path == '/api/state':
             with LOCK, connect() as conn:
                 row = conn.execute('SELECT revision,payload FROM state WHERE id=1').fetchone()

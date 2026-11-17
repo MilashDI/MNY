@@ -50,6 +50,16 @@ class DatabaseTests(unittest.TestCase):
         game['nights'][0]['missed'] = True
         self.assertEqual(server.broadcast_best_move(game, 0), [])
 
+    def test_broadcast_result_requires_finished_matching_game_and_protocol_signal(self):
+        game = {'id': 'one', 'phase': 'finished', 'winner': 'black'}
+        state = {'broadcast': {'mode': 'result', 'gameId': 'one'}}
+        self.assertEqual(server.broadcast_mode(state, game), 'result')
+        self.assertEqual(server.broadcast_mode({}, game), 'game')
+        self.assertEqual(server.broadcast_mode(state, dict(game, id='two')), 'game')
+        self.assertEqual(server.broadcast_mode(state, dict(game, phase='setup')), 'game')
+        self.assertEqual(server.broadcast_mode(state, dict(game, winner=None)), 'game')
+        self.assertEqual(server.broadcast_mode(state, None), 'game')
+
     def test_persistence_restart_conflicts_and_private_files(self):
         with tempfile.TemporaryDirectory() as directory:
             server.DATABASE = Path(directory) / 'mny.sqlite3'
